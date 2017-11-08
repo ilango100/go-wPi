@@ -13,7 +13,7 @@ type Stepper struct {
 // NewStepper creates a Stepper type using the supplied pin values.
 // Initial delay value is 50 milliseconds
 func NewStepper(steps, a, b, c, d int) Stepper {
-	s := Stepper{steps, a, b, c, d, 0, 50 * time.Millisecond}
+	s := Stepper{steps: steps, a: a, b: b, c: c, d: d, delay: 50 * time.Millisecond}
 	s.init()
 	return s
 }
