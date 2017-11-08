@@ -1,13 +1,19 @@
 package wPi
 
+import (
+	"time"
+)
+
 // Stepper is used to operate a stepper motor
 type Stepper struct {
 	a, b, c, d, steps, step int
+	delay                   time.Duration
 }
 
-// NewStepper creates a Stepper type using the supplied pin values
-func NewStepper(steps, a, b, c, d int) Stepper {
-	s := Stepper{steps, a, b, c, d, 0}
+// NewStepper creates a Stepper type using the supplied pin values.
+// 'delay' value in milliseconds
+func NewStepper(steps, a, b, c, d, delay int) Stepper {
+	s := Stepper{steps, a, b, c, d, 0, delay * time.Millisecond}
 	s.init()
 	return s
 }
@@ -70,11 +76,13 @@ func (s Stepper) Step(t int) {
 	if t > 0 {
 		for ; t > 0; t-- {
 			s.ostep()
+			time.Sleep(s.delay)
 		}
 	} else {
 		t = -t
 		for ; t > 0; t-- {
 			s.rstep()
+			time.Sleep(s.delay)
 		}
 	}
 }
