@@ -12,10 +12,22 @@ func NewStepper(steps, a, b, c, d int) Stepper {
 	return s
 }
 
+// Initialises the stepper struct
 func (s Stepper) init() {
-	s.step = 10
 	PinMode(s.a, Output)
 	PinMode(s.b, Output)
 	PinMode(s.c, Output)
 	PinMode(s.d, Output)
+	s.write(10)
+}
+
+// Writes the step value to the stepper
+// The order:
+// 10, 6, 5, 9
+func (s Stepper) write(val int) {
+	DigitalWrite(s.a, (val>>3)&1)
+	DigitalWrite(s.b, (val>>2)&1)
+	DigitalWrite(s.c, (val>>1)&1)
+	DigitalWrite(s.d, val&1)
+	s.step = val
 }
