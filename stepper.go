@@ -47,3 +47,34 @@ func (s Stepper) Step() {
 		s.write(10)
 	}
 }
+
+// RStep steps the motor by one step in reverse direction
+func (s Stepper) RStep() {
+	switch s.step {
+	case 10:
+		s.write(9)
+	case 9:
+		s.write(5)
+	case 5:
+		s.write(6)
+	case 6:
+		fallthrough
+	default:
+		s.write(10)
+	}
+}
+
+// Step steps the motor by t steps.
+// You can provide negative values too for opposite direction stepping
+func (s Stepper) Step(t int) {
+	if t > 0 {
+		for ; t > 0; t-- {
+			s.Step()
+		}
+	} else {
+		t = -t
+		for ; t > 0; t-- {
+			s.RStep()
+		}
+	}
+}
