@@ -86,3 +86,11 @@ func (s Stepper) Step(t int) {
 		}
 	}
 }
+
+func (s Stepper) SetDelay(d time.Duration) {
+	s.delay = d
+}
+
+func (s Stepper) SetSpeed(rpm int) {
+	s.delay = time.Minute / (rpm * s.steps)
+}
