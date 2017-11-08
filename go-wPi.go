@@ -35,3 +35,20 @@ func WiringPiSetupPhys() {
 func WiringPiSetupSys() {
 	C.wiringPiSetupSys()
 }
+
+// PinMode sets the mode of pin, can be Input, Output, PwmOutput or GpioClock
+// Read documentation at wiringPi.com for information
+func PinMode(pin, mode int) {
+	C.pinMode(pin, mode)
+}
+
+// DigitalWrite writes the value on to the pin
+// 0 - LOW, Any other value - HIGH
+func DigitalWrite(pin, value int) {
+	C.digitalWrite(pin, value)
+}
+
+// DigitalRead reads the input from pin
+func DigitalRead(pin int) bool {
+	return C.digitalRead(pin) == C.TRUE
+}
