@@ -11,9 +11,9 @@ type Stepper struct {
 }
 
 // NewStepper creates a Stepper type using the supplied pin values.
-// 'delay' value in milliseconds
-func NewStepper(steps, a, b, c, d, delay int) Stepper {
-	s := Stepper{steps, a, b, c, d, 0, delay * time.Millisecond}
+// Initial delay value is 50 milliseconds
+func NewStepper(steps, a, b, c, d int) Stepper {
+	s := Stepper{steps, a, b, c, d, 0, 50 * time.Millisecond}
 	s.init()
 	return s
 }
@@ -94,5 +94,5 @@ func (s Stepper) SetDelay(d time.Duration) {
 
 // SetSpeed automatically calculates the delay time using the rpm value and sets it
 func (s Stepper) SetSpeed(rpm int) {
-	s.delay = time.Minute / (rpm * s.steps)
+	s.delay = time.Duration((60*1000*1000)/(rpm*s.steps)) * time.Microsecond
 }
