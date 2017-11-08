@@ -21,6 +21,7 @@ func main() {
 
 You can also add stepper type to easily control a stepper motor.
 ```
+wPi.WiringPiSetupGpio() // Should be called before any call
 motor := wPi.NewStepper(200, 5, 6, 13, 19)
 motor.Step(20)
 ```
