@@ -1,27 +1,37 @@
-// Package wPi provides a wrapper library for wiringPi library
+// Package wPi provides as simple wrapper library for wiringPi library
 package wPi
 
 // #cgo LDFLAGS: -lwiringPi
 // #include<wiringPi.h>
 import "C"
 
-// wiringPi Modes
-const (
-	WPI_MODE_PINS int = iota
-	WPI_MODE_GPIO
-	WPI_MODE_GPIO_SYS
-	WPI_MODE_PHYS
-	WPI_MODE_PIFACE
-	WPI_MODE_UNINITIALISED int = -1
-)
-
 // Pin Modes
 const (
-	INPUT int = iota
-	OUTPUT
-	PWM_OUTPUT
-	GPIO_CLOCK
-	SOFT_PWM_OUTPUT
-	SOFT_TONE_OUTPUT
-	PWM_TONE_OUTPUT
+	Input int = iota
+	Output
+	PwmOutput
+	GpioClock
+	SoftPwmOutput
+	SoftToneOutput
+	PwmToneOutput
 )
+
+// WiringPi setup using wiringPI pin numbering
+func WiringPiSetup() {
+	C.wiringPiSetup()
+}
+
+// WiringPi setup using GPIO pin numbering
+func WiringPiSetupGpio() {
+	C.wiringPiSetupGpio()
+}
+
+// WiringPi setup using Physical pin numbering
+func WiringPiSetupPhys() {
+	C.wiringPiSetupPhys()
+}
+
+// WiringPi setup using GPIO numbering with sysfs interface
+func WiringPiSetupSys() {
+	C.wiringPiSetupSys()
+}
