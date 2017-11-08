@@ -31,3 +31,19 @@ func (s Stepper) write(val int) {
 	DigitalWrite(s.d, val&1)
 	s.step = val
 }
+
+// Step steps the motor by one step
+func (s Stepper) Step() {
+	switch s.step {
+	case 10:
+		s.write(6)
+	case 6:
+		s.write(5)
+	case 5:
+		s.write(9)
+	case 9:
+		fallthrough
+	default:
+		s.write(10)
+	}
+}
