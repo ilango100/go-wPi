@@ -32,8 +32,8 @@ func (s Stepper) write(val int) {
 	s.step = val
 }
 
-// Step steps the motor by one step
-func (s Stepper) Step() {
+// step steps the motor by one step
+func (s Stepper) step() {
 	switch s.step {
 	case 10:
 		s.write(6)
@@ -48,8 +48,8 @@ func (s Stepper) Step() {
 	}
 }
 
-// RStep steps the motor by one step in reverse direction
-func (s Stepper) RStep() {
+// rstep steps the motor by one step in reverse direction
+func (s Stepper) rstep() {
 	switch s.step {
 	case 10:
 		s.write(9)
@@ -69,12 +69,12 @@ func (s Stepper) RStep() {
 func (s Stepper) Step(t int) {
 	if t > 0 {
 		for ; t > 0; t-- {
-			s.Step()
+			s.step()
 		}
 	} else {
 		t = -t
 		for ; t > 0; t-- {
-			s.RStep()
+			s.rstep()
 		}
 	}
 }
