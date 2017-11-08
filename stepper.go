@@ -87,10 +87,12 @@ func (s Stepper) Step(t int) {
 	}
 }
 
+// SetDelay sets the delay time between each step
 func (s Stepper) SetDelay(d time.Duration) {
 	s.delay = d
 }
 
+// SetSpeed automatically calculates the delay time using the rpm value and sets it
 func (s Stepper) SetSpeed(rpm int) {
 	s.delay = time.Minute / (rpm * s.steps)
 }
