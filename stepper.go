@@ -7,7 +7,7 @@ type Stepper struct {
 
 // NewStepper creates a Stepper type using the supplied pin values
 func NewStepper(steps, a, b, c, d int) Stepper {
-	s := Stepper{steps, a, b, c, d}
+	s := Stepper{steps, a, b, c, d, 0}
 	s.init()
 	return s
 }
