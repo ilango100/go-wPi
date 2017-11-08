@@ -13,7 +13,7 @@ import(
 )
 
 func main() {
-    wPi.wiringPiSetup()
+    wPi.WPi() // Should be called before any operation
     wPi.PinMode(2,wPi.Output)
     wPi.DigitalWrite(2,1)
 }
@@ -21,7 +21,7 @@ func main() {
 
 You can also add stepper type to easily control a stepper motor.
 ```
-wPi.WiringPiSetupGpio() // Should be called before any call
+wPi.Gpio() // Should be called before any operation
 motor := wPi.NewStepper(200, 5, 6, 13, 19)
 motor.Step(20)
 ```

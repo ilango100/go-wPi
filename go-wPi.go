@@ -1,4 +1,7 @@
-// Package wPi provides as simple wrapper library for wiringPi library
+// Package wPi provides as simple wrapper library for wiringPi library.
+//
+//Note:
+// Any of the setup functions WPi, GPio, Phys, Sys should be called before any other operations
 package wPi
 
 // #cgo LDFLAGS: -lwiringPi
@@ -16,23 +19,23 @@ const (
 	PwmToneOutput
 )
 
-// WiringPi setup using wiringPI pin numbering
-func WiringPiSetup() {
+// WPi sets up wiringPi using wiringPI pin numbering
+func WPi() {
 	C.wiringPiSetup()
 }
 
-// WiringPi setup using GPIO pin numbering
-func WiringPiSetupGpio() {
+// Gpio sets up wiringPi using GPIO pin numbering
+func Gpio() {
 	C.wiringPiSetupGpio()
 }
 
-// WiringPi setup using Physical pin numbering
-func WiringPiSetupPhys() {
+// Phys sets up wiringPi using Physical pin numbering
+func Phys() {
 	C.wiringPiSetupPhys()
 }
 
-// WiringPi setup using GPIO numbering with sysfs interface
-func WiringPiSetupSys() {
+// Sys sets up wiringPi using GPIO numbering with sysfs interface
+func Sys() {
 	C.wiringPiSetupSys()
 }
 
